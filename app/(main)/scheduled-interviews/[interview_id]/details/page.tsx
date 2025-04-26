@@ -4,6 +4,7 @@ import supabase from "@/services/supabaseClient";
 import { useParams } from "next/navigation";
 import React, { useEffect } from "react";
 import InterviewDetailsContainer from "../_components/InterviewDetailsContainer";
+import CandidatesList from "../_components/CandidatesList";
 
 export default function ScheduledInterviews() {
     const {interview_id} = useParams();
@@ -30,6 +31,7 @@ export default function ScheduledInterviews() {
     <div className="p-5">
       <h2 className="my-3 text-2xl font-bold">Interview Details</h2>
       <InterviewDetailsContainer interviewDetails={interviewDetails}/>
+      <CandidatesList candidatesList={interviewDetails?.['interview_feedback']}/>
     </div>
   );
 }

@@ -4,6 +4,7 @@ import { useRouter } from 'next/navigation';
 import { toast } from 'sonner';
 import supabase from '@/services/supabaseClient';
 import { v4 as uuidv4 } from 'uuid';
+import { useUserDetail } from '@/app/provider';
 
 interface Question {
   question: string;
@@ -16,6 +17,7 @@ export function useInterview(formData: FormData, userEmail: string | undefined, 
   const [saving, setSaving] = useState(false);
   const [questions, setQuestions] = useState<Question[]>([]);
   const [error, setError] = useState<string | null>(null);
+  const {user} = useUserDetail();
 
   const generateQuestions = async () => {
     setLoading(true);
@@ -63,6 +65,13 @@ export function useInterview(formData: FormData, userEmail: string | undefined, 
 
       if (error) throw error;
 
+      const userUpdate = await supabase
+        .from('Users')
+        .update({credits: Number(user?.credits) - 1})
+        .eq('email', user?.email)
+        .select();
+      if (userUpdate.error) throw userUpdate.error;
+      console.log("User credits updated:", userUpdate.data);
       console.log('Setting interview_id in parent:', interview_id);
       setInterviewId(interview_id);
       

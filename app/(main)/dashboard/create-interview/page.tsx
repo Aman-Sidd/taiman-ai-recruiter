@@ -8,6 +8,7 @@ import { FormData } from '@/types/form';
 import QuestionsList from './_components/QuestionsList';
 import { toast } from 'sonner';
 import InterviewLink from './_components/InterviewLink';
+import { useUserDetail } from '@/app/provider';
 
 export default function CreateInterview() {
   const router = useRouter();
@@ -19,7 +20,7 @@ export default function CreateInterview() {
     interview_types: []
   });
   const [interview_id, setInterviewId] = useState<string>('');
-
+  const {user} = useUserDetail();
   const onHandleInputChange = (key: keyof FormData, value: string | string[]) => {
     setFormData(prev => ({
       ...prev,
@@ -28,6 +29,10 @@ export default function CreateInterview() {
   }
 
   const goToNextStep = () => {
+    if(!user || user?.credits<=0){
+      toast('You have no credits left! Please purchase credits to continue.')
+      return;
+    }
     if (!formData?.interview_duration || !formData?.interview_types || !formData?.job_description
       || !formData?.job_position) {
       toast('Make sure to fill in all required fields!')
