@@ -56,14 +56,15 @@ export function InterviewCard({ interview, viewDetail=false}: { interview: any, 
         <h2 className="text-sm">{moment(interview.created_at).format("DD MMM yyyy")}</h2>
       </div>
       <h2 className="mt-3 font-bold text-lg">{interview?.job_position}</h2>
-      <h2 className="mt-2 flex justify-between text-gray-500">{interview?.interview_duration}<span className="text-green-800"> {interview['interview_feedback']?.length} Candidates</span></h2>
+      { viewDetail && <h2 className="mt-2 flex justify-between text-gray-500">{interview?.interview_duration}<span className="text-green-800"> {interview['interview_feedback']?.length} Candidates</span></h2>}
+
       {!viewDetail?<div className="flex w-full mt-5 items-center gap-3 justify-center">
-        <Button variant="outline" onClick={copyLink}>
+        <Button className='cursor-pointer' variant="outline" onClick={copyLink}>
           <Copy />
           Copy Link
         </Button>
-        <div className="px-3 bg-primary rounded-sm">
-          <Button onClick={() => setIsEmailInputVisible(!isEmailInputVisible)}>
+        <div className="px-3 bg-blue-500 rounded-sm">
+          <Button className='cursor-pointer bg-blue-500' onClick={() => setIsEmailInputVisible(!isEmailInputVisible)}>
             <Send />
             Send
           </Button>
