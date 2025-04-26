@@ -1,0 +1,100 @@
+import { Input } from '@/components/ui/input';
+import { Textarea } from '@/components/ui/textarea';
+import React, { useState } from 'react';
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select"
+import { InterviewTypes } from '@/services/Constants';
+import { ArrowRight } from 'lucide-react';
+import { Button } from '@/components/ui/button';
+import { FormData } from '@/types/form';
+
+interface Props {
+  onHandleInputChange: (key: keyof FormData, value: string | string[]) => void;
+  formData: FormData;
+  goToNextStep: ()=>void;
+}
+
+export default function FormContainer({ onHandleInputChange, formData, goToNextStep }: Props) {
+  const [interviewType, setInterviewType] = useState<string[]>([]);
+
+  return (
+    <div className='p-5 bg-white'>
+      <div>
+        <h2 className='text-sm font-medium'>Job Position</h2>
+        <Input 
+          placeholder='e.g. Full Stack Developer' 
+          className='mt-2'
+          value={formData.job_position}
+          onChange={(e) => onHandleInputChange('job_position', e.target.value)}
+        />
+      </div>
+      <div className='mt-5'>
+        <h2 className='text-sm font-medium'>Job Description</h2>
+        <Textarea 
+          placeholder='Enter Job Details Description' 
+          className='h-[200px] mt-2'
+          value={formData.job_description}
+          onChange={(e) => onHandleInputChange('job_description', e.target.value)}
+        />
+      </div>
+      <div className='mt-5'>
+        <h2 className='text-sm font-medium'>Interview Duration</h2>
+        <Select onValueChange={(value) => onHandleInputChange('interview_duration', value)}>
+          <SelectTrigger className="w-full mt-2">
+            <SelectValue placeholder="Select Duration" />
+          </SelectTrigger>
+          <SelectContent>
+            <SelectItem value="5 min">5 min</SelectItem>
+            <SelectItem value="15 min">15 min</SelectItem>
+            <SelectItem value="30 min">30 min</SelectItem>
+            <SelectItem value="45 min">45 min</SelectItem>
+            <SelectItem value="60 min">60 min</SelectItem>
+          </SelectContent>
+        </Select>
+      </div>
+      <div className='mt-5'>
+        <h2 className='text-sm font-medium'>Interview Types</h2>
+        <div className='flex flex-row gap-3 flex-wrap mt-2'>
+          {InterviewTypes.map((type, index)=>(
+            <div 
+              key={index} 
+              className={`flex flex-row gap-2 p-2 px-4 border rounded-2xl transition-all cursor-pointer group
+                ${formData.interview_types.includes(type.title) 
+                  ? 'bg-blue-50 border-blue-500' 
+                  : 'bg-white border-gray-300 hover:bg-blue-50 hover:border-blue-500'
+                }`}
+              onClick={() => {
+                const newTypes = formData.interview_types.includes(type.title) 
+                  ? formData.interview_types.filter(t => t !== type.title)
+                  : [...formData.interview_types, type.title];
+                onHandleInputChange('interview_types', newTypes);
+              }}
+            >
+              <type.icon 
+                size={20} 
+                className={`transition-all ${
+                  formData.interview_types.includes(type.title)
+                    ? 'text-blue-500'
+                    : 'text-gray-500 group-hover:text-blue-500'
+                }`}
+              />
+              <span className={`text-sm transition-all ${
+                formData.interview_types.includes(type.title)
+                  ? 'text-blue-500'
+                  : 'text-gray-600 group-hover:text-blue-500'
+              }`}>{type.title}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+      <div className='flex justify-end mt-7'>
+        <Button onClick={goToNextStep} className='cursor-pointer'>Generate Questions <ArrowRight/></Button>
+      </div>
+    </div>
+  );
+};
