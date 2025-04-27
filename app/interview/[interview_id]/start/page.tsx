@@ -91,7 +91,7 @@ Key Guidelines:
 ✅ Be friendly, engaging, and witty 🎤
 ✅ Keep responses short and natural, like a real conversation
 ✅ Adapt based on the candidate’s confidence level
-✅ Ensure the interview remains focused on React
+✅ Ensure the interview remains focused on ${interviewInfo?.job_position}
 `.trim(),
             },
           ],

@@ -30,13 +30,13 @@ const Login: React.FC<Props> = ({}) => {
     setLoading(true); // Start loading during sign-in
     const { data, error } = await supabase.auth.signInWithOAuth({
       provider: 'google',
+      options: {
+        redirectTo: `${window.location.origin}/dashboard`, // Redirect to /dashboard after sign-in
+      },
     });
     if (error) {
       console.log(error);
       setLoading(false); // Stop loading if there's an error
-    } else {
-      console.log(data);
-      router.push('/dashboard');
     }
   };
 
