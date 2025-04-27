@@ -65,7 +65,7 @@ export default function AllInterviewsPage() {
         <div>
           <div className="grid grid-cols-2 lg:grid-cols-3 gap-5 mt-4">
             {interviews.map((interview, index) => (
-              <InterviewCard interview={interview} key={index} />
+              <InterviewCard interview={interview} key={index} viewDetail={false}/>
             ))}
           </div>
           {/* Pagination Controls */}

@@ -9,6 +9,7 @@ import { useParams, useRouter, useSearchParams } from "next/navigation";
 import { toast } from "sonner";
 import supabase from "@/services/supabaseClient";
 import { useInterviewInfo } from "@/app/_hooks/useInterviewInfo";
+import { CreateAssistantDTO } from "@vapi-ai/web/dist/api";
 
 interface Props {
   interview_id: string;
@@ -44,6 +45,7 @@ export default function Start() {
     }
   }, [interviewInfo]);
 
+
   const startCall = () => {
     try {
       let questionsList: string = "";
@@ -52,13 +54,13 @@ export default function Start() {
       );
       console.log("questionsList:", questionsList);
 
-      const assistantOptions = {
+      const assistantOptions: CreateAssistantDTO = {
         name: "AI Recruiter",
         firstMessage: `Hi ${fullName}, how are you? Ready for your interview on ${interviewInfo?.job_position}?`,
         transcriber: {
-          provider: "deepgram",
+          provider: "deepgram", // Explicitly set the provider to "deepgram"
           model: "nova-2",
-          language: "en-US",
+          language: "en-US", // Use a valid language value
         },
         voice: {
           provider: "playht",
