@@ -1,8 +1,8 @@
 "use client"
-import React, { useContext, useState } from 'react';
+import React, { useState } from 'react';
 import { InterviewLayoutHeader } from './_components/InterviewLayoutHeader';
 import { InterviewDataContext } from '@/context/InterviewDataContext';
-import { InterviewInfo, InterviewInfoContextType } from '@/types/user';
+import { InterviewInfo} from '@/types/user';
 
 export default function InterviewLayout({
   children,
@@ -20,10 +20,3 @@ export default function InterviewLayout({
   );
 }
 
-export function useInterviewInfo(): InterviewInfoContextType {
-  const context = useContext(InterviewDataContext) as InterviewInfoContextType;
-  if (!context) {
-      throw new Error('useInterviewInfo must be used within a interviewInfoProvider');
-  }
-  return context;
-}

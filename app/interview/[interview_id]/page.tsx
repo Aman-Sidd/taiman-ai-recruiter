@@ -9,7 +9,7 @@ import { toast } from 'sonner';
 import Image from 'next/image';
 import supabase from '@/services/supabaseClient';
 import { useParams, useRouter } from 'next/navigation';
-import { useInterviewInfo } from '../layout';
+import { useInterviewInfo } from '@/app/_hooks/useInterviewInfo';
 
 interface Interviews {
   job_position: string;
