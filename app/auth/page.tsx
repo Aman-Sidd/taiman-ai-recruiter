@@ -52,7 +52,7 @@ const Login: React.FC<Props> = ({}) => {
     <div className='flex flex-col items-center justify-center h-screen'>
       <div className='flex flex-col items-center border rounded-2xl p-8'>
         <div>
-          <Image src={"/full_logo_png.png"} alt="logo" width={400} height={100} className='w-[180px]' />
+          <Image src={"/ful_logo.png"} alt="logo" width={400} height={100} className='w-[180px]' />
         </div>
         <div>
           <Image src={"/cover-image.jpg"} alt="logo" width={600} height={400} className='w-[400px] h-[250px] rounded-2xl' />
