@@ -4,6 +4,16 @@ import React from "react";
 import CandidateFeedbackDetail from "./CandidateFeedbackDialog";
 
 export default function CandidatesList({candidatesList}: any) {
+
+    const calculateAverageRating = (feedback: any) => {
+        if (!feedback) return 0;
+        const ratings = [
+            feedback?.rating?.technicalSkills || 0, feedback?.rating?.communication || 0,
+            feedback?.rating?.problemSolving || 0, feedback?.rating?.experience || 0];
+        const total = ratings.reduce((acc: number, rating: number) => acc + rating, 0);
+        return (total / ratings.length).toFixed(0); // Return average rating with one decimal place
+    }
+
     return (
         <div>
             <h2 className="font-bold my-5">Candidates ({candidatesList?.length})</h2>
@@ -18,7 +28,7 @@ export default function CandidatesList({candidatesList}: any) {
                        </div>
                         </div>
                         <div className="flex gap-3 items-center">
-                            <h2 className="text-green-800">6.0/10</h2>
+                            <h2 className="text-green-800">{calculateAverageRating(candidate?.feedback)}/10</h2>
                             <CandidateFeedbackDetail candidate={candidate}/>
                         </div>
                     </div>

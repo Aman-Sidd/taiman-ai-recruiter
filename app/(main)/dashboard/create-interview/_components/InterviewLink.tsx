@@ -60,15 +60,17 @@ export default function InterviewLink({ interview_id, formData }: Props) {
     >
       <div className="flex items-center gap-3 mb-6">
         <CheckCircle2 className="w-6 h-6 text-green-500" />
-        <h2 className="text-2xl font-semibold text-gray-800">Interview Created Successfully!</h2>
+        <h2 className="text-2xl font-semibold text-gray-800 text-center sm:text-left">
+          Interview Created Successfully!
+        </h2>
       </div>
 
       <div className="space-y-6">
         {/* Interview Link Section */}
         <div className="p-4 bg-gray-50 rounded-lg">
           <p className="text-sm text-gray-600 mb-2">Interview Link</p>
-          <div className="flex items-center gap-2">
-            <div className="flex-grow p-3 bg-white border rounded-md font-mono text-sm">
+          <div className="flex flex-col sm:flex-row items-center gap-2">
+            <div className="flex-grow p-3 bg-white border rounded-md font-mono text-sm text-center sm:text-left">
               {interviewUrl}
             </div>
             <Button
@@ -97,7 +99,7 @@ export default function InterviewLink({ interview_id, formData }: Props) {
             <Share2 className="w-5 h-5 text-gray-600" />
             <p className="text-sm text-gray-600">Share via</p>
           </div>
-          <div className="flex flex-wrap gap-3">
+          <div className="flex flex-wrap gap-3 justify-center sm:justify-start">
             {shareOptions.map((option) => (
               <Button
                 key={option.name}
@@ -139,18 +141,18 @@ export default function InterviewLink({ interview_id, formData }: Props) {
         </div>
 
         {/* Navigation Buttons */}
-        <div className="flex justify-between items-center pt-4 border-t">
+        <div className="flex flex-col sm:flex-row justify-between items-center pt-4 border-t gap-3">
           <Button
             variant="outline"
             onClick={() => router.push('/dashboard')}
-            className="flex items-center gap-2"
+            className="flex items-center gap-2 w-full sm:w-auto"
           >
             <ArrowLeft className="w-4 h-4" />
             Back to Dashboard
           </Button>
           <Button
             onClick={() => router.push('/dashboard/create-interview')}
-            className="flex items-center gap-2 bg-blue-500 hover:bg-blue-600"
+            className="flex items-center gap-2 bg-blue-500 hover:bg-blue-600 w-full sm:w-auto"
           >
             <Plus className="w-4 h-4" />
             Create New Interview

@@ -28,7 +28,7 @@ export default function CandidateFeedbackDetail({ candidate }: any) {
         <div className="flex justify-between items-center">
 
        <div className="flex items-center gap-5 ">
-                               <h2 className="bg-primary p-3 px-4.5 font-bold text-white rounded-full">{candidate.user_name[0]}</h2>
+                               <h2 className="bg-primary p-3 px-4.5 font-bold text-white rounded-full">{candidate?.user_name[0]}</h2>
                               <div>
                                    <h2 className="font-bold">{candidate?.user_name}</h2>
                                    <h2 className="text-sm text-gray-500">{candidate?.user_email}</h2>

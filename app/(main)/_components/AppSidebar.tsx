@@ -14,14 +14,15 @@ import { Plus } from "lucide-react"
 import Image from "next/image"
 import { SidebarOptions } from "@/services/Constants"
 import Link from "next/link"
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 export function AppSidebar() {
   const pathname = usePathname();
+  const router = useRouter();
     return (
         <Sidebar>
             <SidebarHeader className="flex items-center justify-center">
                 <Image src={"/full_logo.png"} alt="logo" width={100} height={100} />
-                <Button className="w-full mt-5"><Plus/>Create New Interview</Button>
+                <Button onClick={()=>router.push('/dashboard/create-interview')} className="w-full mt-5"><Plus/>Create New Interview</Button>
             </SidebarHeader>
             <SidebarContent>
                 <SidebarGroup>

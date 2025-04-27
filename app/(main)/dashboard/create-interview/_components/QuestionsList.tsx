@@ -75,11 +75,11 @@ export default function QuestionsList({ formData, goToNextStep, setInterviewId }
         )}
       </AnimatePresence>
 
-      <div className='flex justify-end mt-6'>
-        <Button 
+      <div className="flex justify-end mt-6">
+        <Button
           onClick={saveInterview}
           disabled={saving || loading}
-          className='cursor-pointer min-w-[120px]'
+          className="cursor-pointer min-w-[120px]"
         >
           {saving ? (
             <LoadingState message="Saving..." />

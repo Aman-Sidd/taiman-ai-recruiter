@@ -19,7 +19,9 @@ Communication, Problem Solving, Experience. Also give me a summary in 3 lines
 
 about the interview and one line to let me know whether the candidate is recommended 
 
-for hire or not with a message. Give me the response in JSON format:
+for hire or not with a message. Ensure that the recommendation is either "Yes" or "No". 
+
+Give me the response in JSON format:
 
 {
     feedback: {
@@ -30,8 +32,8 @@ for hire or not with a message. Give me the response in JSON format:
             experience: 7
         },
         summary: "<in 3 lines>",
-        recommendation: "",
-        recommendationMsg: ""
+        recommendation: "Yes",
+        recommendationMsg: "The candidate is highly recommended for the role."
     }
 }`;
 
