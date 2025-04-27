@@ -1,6 +1,5 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import { useInterviewInfo } from "../../layout";
 import { Mic, Phone, Timer } from "lucide-react";
 import Image from "next/image";
 import { useUserDetail } from "@/app/provider";
@@ -9,6 +8,7 @@ import AlertConfirmation from "./_components/AlertConfirmation";
 import { useParams, useRouter, useSearchParams } from "next/navigation";
 import { toast } from "sonner";
 import supabase from "@/services/supabaseClient";
+import { useInterviewInfo } from "@/app/_hooks/useInterviewInfo";
 
 interface Props {
   interview_id: string;
