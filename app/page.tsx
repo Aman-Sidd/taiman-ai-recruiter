@@ -36,7 +36,7 @@ export default function Home() {
             </Button>
             <Button
               className="bg-transparent border border-white hover:bg-white hover:text-blue-600 px-8 py-4 rounded-lg font-bold shadow-lg transition-transform transform hover:scale-105"
-              onClick={() => window.location.href = "/settings"}
+              onClick={() => window.location.href = "/auth"}
             >
               Learn More
             </Button>
@@ -141,7 +141,7 @@ export default function Home() {
             </Button>
             <Button
               className="bg-transparent border border-white hover:bg-white hover:text-blue-600 px-8 py-4 rounded-lg font-bold shadow-lg transition-transform transform hover:scale-105"
-              onClick={() => window.location.href = "/settings"}
+              onClick={() => window.location.href = "/auth"}
             >
               Learn More
             </Button>
